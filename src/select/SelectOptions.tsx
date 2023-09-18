@@ -58,11 +58,10 @@ export function SelectOptions(props: SelectOptionsProps) {
     const scrollElementRef = useRef<HTMLDivElement | null>(null);
     const [pageCount, setPageCount] = useState(1);
 
-    const url = new URL(`https:/alanbase-front-bt2of.ondigitalocean.app`, import.meta.url)
 
     useLayoutEffect(() => {
         const dataFetch = async () => {
-            const data = await (await fetch(`${url}/api/users?page=${pageCount}&limit=50`)).json();
+            const data = await (await fetch(`/api/users?page=${pageCount}&limit=50`)).json();
             setListItems([...listItems, ...data.data]);
         };
 
