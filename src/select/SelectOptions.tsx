@@ -60,7 +60,7 @@ export function SelectOptions(props: SelectOptionsProps) {
 
     useLayoutEffect(() => {
         const dataFetch = async () => {
-            const data = await (await fetch(`https:/alanbase-front-bt2of.ondigitalocean.app/api/users?page=${pageCount}&limit=50`)).json();
+            const data = await (await fetch(`https://alanbase-front-bt2of.ondigitalocean.app/api/users?page=${pageCount}&limit=50`)).json();
             setListItems([...listItems, ...data.data]);
         };
 
