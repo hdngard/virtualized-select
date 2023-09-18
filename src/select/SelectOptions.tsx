@@ -16,7 +16,7 @@ const StyledSelectOptions = styled.div<StyledSelectOptionsProps>`
   width: 360px;
   border-radius: 4px;
   box-shadow: 0px 10px 30px 0px rgba(46, 62, 154, 0.10);
-  
+
   &::-webkit-scrollbar {
     width: 4px;
   }
@@ -39,6 +39,14 @@ const StyledSelectOptions = styled.div<StyledSelectOptionsProps>`
 const itemHeight = 32;
 const containerHeight = 168;
 
+interface IListItem {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+    job?: string | undefined;
+}
+
 interface SelectOptionsProps {
     setValue: (value: (((prevState: string) => string) | string)) => void;
 }
@@ -46,9 +54,8 @@ interface SelectOptionsProps {
 export function SelectOptions(props: SelectOptionsProps) {
     const {setValue} = props;
 
-    const [listItems, setListItems] = useState([]);
+    const [listItems, setListItems] = useState<IListItem[]>([]);
     const scrollElementRef = useRef<HTMLDivElement | null>(null);
-    const [scrollTop, setScrollTop] = useState(0);
     const [pageCount, setPageCount] = useState(1);
 
     useLayoutEffect(() => {
@@ -73,7 +80,6 @@ export function SelectOptions(props: SelectOptionsProps) {
             if (scrollTop === itemHeight * 50 * pageCount - containerHeight) {
                 setPageCount(pageCount => pageCount + 1)
             }
-            setScrollTop(scrollTop);
         };
 
         handleScroll();

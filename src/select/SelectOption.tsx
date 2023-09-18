@@ -51,7 +51,7 @@ const StyledSelectOption = styled.button<StyledSelectedOptionProps>`
 interface SelectOptionProps {
     firstName: string;
     lastName: string;
-    job: string;
+    job?: string | undefined;
     itemHeight: number;
     offsetTop: number;
     setValue: (value: string) => void;
