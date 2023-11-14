@@ -1,4 +1,4 @@
-import {useCallback, useLayoutEffect, useRef, useState,} from "react";
+import {useCallback, useEffect, useLayoutEffect, useRef, useState,} from "react";
 import {useFixedSizeList} from '../hooks/useFixedSizeList';
 import styled from "@emotion/styled";
 import {SelectOption} from "./SelectOption";
@@ -7,6 +7,7 @@ interface StyledSelectOptionsProps {
     containerHeight: number;
 }
 
+//TODO: заменить styled на css modules для лучшей производительности
 const StyledSelectOptions = styled.div<StyledSelectOptionsProps>`
   background-color: white;
   height: ${props => props.containerHeight + 'px'};
@@ -58,7 +59,7 @@ export function SelectOptions(props: SelectOptionsProps) {
     const scrollElementRef = useRef<HTMLDivElement | null>(null);
     const [pageCount, setPageCount] = useState(1);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const dataFetch = async () => {
             const data = await (await fetch(`https://alanbase-front-bt2of.ondigitalocean.app/api/users?page=${pageCount}&limit=50`)).json();
             setListItems([...listItems, ...data.data]);
